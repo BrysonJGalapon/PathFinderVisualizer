@@ -54,9 +54,6 @@ func main() {
 // RunCode runs code and streams a list of events to the UI
 func RunCode(c *gin.Context) {
 	testStream()
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Yo",
-	})
 }
 
 func Events(c *gin.Context) {
