@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 	"time"
@@ -28,8 +27,6 @@ type Coordinate struct {
 
 func testStream() {
 	for i := 0; i < 10; i++ {
-		fmt.Printf("Sending: %v %v\n", i, i+2)
-
 		stream <- Event{
 			Type: "test",
 			Data: Coordinate{
@@ -64,13 +61,13 @@ func main() {
 // RunCode runs code and streams a list of events to the UI
 func RunCode(c *gin.Context) {
 	stream <- Event{Type: "hello"}
+	time.Sleep(1 * time.Second) // wait for client to open connection
 	testStream()
 }
 
 func Events(c *gin.Context) {
 	c.Stream(func(w io.Writer) bool {
 		if event, ok := <-stream; ok {
-			fmt.Printf("Receiving: %v %v\n", event.Data.X, event.Data.Y)
 			c.SSEvent(event.Type, event.Data)
 			return true
 		}

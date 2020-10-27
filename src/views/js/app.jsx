@@ -79,7 +79,7 @@ class Dashboard extends React.Component {
         return (
             <div>
                 <h1> Hello React World! </h1>
-                <Table m={20} n={20} />
+                <Table m={12} n={15} />
             </div>
         )
     }
