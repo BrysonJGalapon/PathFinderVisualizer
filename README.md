@@ -1,5 +1,9 @@
 # PathFinderVisualizer
 
+To run:
+    >$ cd src
+    >$ go run main.go
+
 Allows users to:
     1. Build a map
     2. Submit pathfinding code 
