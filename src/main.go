@@ -3,7 +3,6 @@ package main
 import (
 	"io"
 	"net/http"
-	"strconv"
 	"time"
 
 	"github.com/gin-gonic/contrib/static"
@@ -18,14 +17,22 @@ func init() {
 
 type Event struct {
 	Type string
-	Data string
+	Data Coordinate
+}
+
+type Coordinate struct {
+	X int
+	Y int
 }
 
 func testStream() {
 	for i := 0; i < 10; i++ {
 		stream <- Event{
 			Type: "test",
-			Data: strconv.Itoa(i),
+			Data: Coordinate{
+				X: i,
+				Y: i + 2,
+			},
 		}
 
 		time.Sleep(1 * time.Second)
