@@ -90,13 +90,10 @@ class Table extends React.Component {
 class Cell extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            color : props.color
-        }
     } 
 
     render() {
-        const mystyle = {
+        const whiteBlock = {
             background: "#fff",
             border: "1px solid #999",
             float: "left",
@@ -109,10 +106,34 @@ class Cell extends React.Component {
             padding: "0",
             textAlign: "center",
             width: "34px",
-    }
+        }
+
+        const blackBlock = {
+            background: "#000",
+            border: "1px solid #999",
+            float: "left",
+            fontSize: "24px",
+            fontWeight: "bold",
+            lineHeight: "34px",
+            height: "34px",
+            marginRight: "-1px",
+            marginTop: "-1px",
+            padding: "0",
+            textAlign: "center",
+            width: "34px",
+        }
+
+        var myStyle
+        if (this.props.color == 0) {
+            myStyle = whiteBlock
+        } else if (this.props.color == 1) {
+            myStyle = blackBlock
+        } else {
+            myStyle = whiteBlock
+        }
         
         return (
-            <div style={mystyle}> {this.props.color} </div>
+            <div style={myStyle}> </div>
         )
     }
 }
