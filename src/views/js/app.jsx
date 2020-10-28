@@ -1,6 +1,19 @@
+// import styles from '../css/app.css'; 
+
 class App extends React.Component {
     render() {
         return ( <Dashboard /> );
+    }
+}
+
+class Dashboard extends React.Component {    
+    render() {
+        return (
+            <div>
+                <h1> Hello React World! </h1>
+                <Table m={12} n={15} />
+            </div>
+        )
     }
 }
 
@@ -54,9 +67,9 @@ class Table extends React.Component {
 
     render() {
         var rows = this.state.table.map(function (row, i) {
-            var entry = row.map(function (val, j) {
+            var entry = row.map(function (color, j) {
                 return (
-                <td key={j}> {val} </td>
+                <td key={j}> <Cell color={color}/> </td>
                 )
             })
             return (
@@ -74,15 +87,34 @@ class Table extends React.Component {
     }
 }
 
-class Dashboard extends React.Component {    
+class Cell extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            color : props.color
+        }
+    } 
+
     render() {
+        const mystyle = {
+            background: "#fff",
+            border: "1px solid #999",
+            float: "left",
+            fontSize: "24px",
+            fontWeight: "bold",
+            lineHeight: "34px",
+            height: "34px",
+            marginRight: "-1px",
+            marginTop: "-1px",
+            padding: "0",
+            textAlign: "center",
+            width: "34px",
+    }
+        
         return (
-            <div>
-                <h1> Hello React World! </h1>
-                <Table m={12} n={15} />
-            </div>
+            <div style={mystyle}> {this.props.color} </div>
         )
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'))
